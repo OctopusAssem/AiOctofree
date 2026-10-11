@@ -14,6 +14,7 @@
 - **مرشد ذكي**: يصنّف سؤالك ويقترح أنسب موديل مجاني
 - **مظهر تختاره**: فاتح / ليلي / حسب إعداد الجهاز
 - **شاشة ترحيب**: تعريف سريع بالمحطة والبدء بإضافة مفتاح مجاني
+- **اللوجو الأصلي**: يظهر كاملًا كأيقونة للتطبيق
 - **مفاتيحك عندك**: مشفّرة على الجهاز (EncryptedSharedPreferences) — مفيش سيرفر وسطاء
 - **فتح الموقع**: لو محتاج مفتاح، زر يفتح صفحة الاشتراك (Custom Tabs)
 
@@ -52,6 +53,7 @@ Apache-2.0 · by [OctopusAssem](https://github.com/OctopusAssem) (عاصم حس�
 - Free-tier providers: Groq, Gemini, OpenRouter `:free`
 - Local SQLite history + encrypted API keys (BYOK only)
 - Keyword/category router suggests the best free model
+- Original uploaded logo used as the launcher icon
 - Custom Tabs to open provider signup pages
 
 ### Install
