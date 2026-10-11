@@ -1,68 +1,87 @@
 # AiOctofree
 
-**محطة الذكاء الاصطناعي المجانية** — تطبيق أندرويد مفتوح المصدر يجمع مزوّدي AI المجانيين في مكان واحد.
+<p align="center">
+  <img src="app/src/main/res/drawable-nodpi/brand_logo.webp" width="148" alt="شعار AiOctofree">
+</p>
 
-[English](#english) · [العربية](#العربية)
+<h2 align="center">محطة الذكاء الاصطناعي المجانية</h2>
 
----
+<p align="center">شات واحد لعدة مزوّدين، أرشيف محلي لمحادثاتك، ومرشد يساعدك تختار المزوّد المناسب لسؤالك.</p>
 
-## العربية
+<p align="center">
+  <a href="https://github.com/OctopusAssem/AiOctofree/releases/latest/download/app-release.apk">تحميل أحدث APK موقّع</a>
+  · <a href="https://github.com/OctopusAssem/AiOctofree/releases">كل الإصدارات</a>
+  · <a href="CHANGELOG.md">سجل التغييرات</a>
+</p>
 
-### ليه AiOctofree؟
-- **مجاني أولاً**: Groq · Google Gemini · OpenRouter (`:free`)
-- **أرشيف محلي**: كل المحادثات على موبايلك (SQLite) — خصوصية
-- **مرشد ذكي**: يصنّف سؤالك ويقترح أنسب موديل مجاني
-- **مظهر تختاره**: فاتح / ليلي / حسب إعداد الجهاز
-- **شاشة ترحيب**: تعريف سريع بالمحطة والبدء بإضافة مفتاح مجاني
-- **اللوجو الأصلي**: يظهر كاملًا كأيقونة للتطبيق
-- **مفاتيحك عندك**: مشفّرة على الجهاز (EncryptedSharedPreferences) — مفيش سيرفر وسطاء
-- **فتح الموقع**: لو محتاج مفتاح، زر يفتح صفحة الاشتراك (Custom Tabs)
+AiOctofree تطبيق Android مفتوح المصدر، معمول عشان يجمع واجهات الذكاء الاصطناعي ذات الخطط المجانية في تجربة عربية بسيطة. تختار المزوّد، تضيف مفتاحك الشخصي، وتبدأ المحادثة من غير حساب داخل التطبيق أو خادم وسيط تابع للمشروع.
 
-### التثبيت
-1. نزّل أحدث APK الموقّع من [Releases](https://github.com/OctopusAssem/AiOctofree/releases)
-2. ثبّته (مصدر غير معروف)
-3. من تبويب **مفاتيح** → افتح موقع المزود → انسخ المفتاح → احفظ
-4. ارجع للشات واسأل
+## المميزات
 
-### مزوّدون (حدود تقريبية — تتغيّر)
-| مزوّد | ملاحظة مجانية |
-|--------|----------------|
-| [Groq](https://console.groq.com/keys) | ~30/د · 1000/يوم · بدون بطاقة |
-| [Gemini](https://aistudio.google.com/apikey) | AI Studio free |
-| [OpenRouter](https://openrouter.ai/keys) | موديلات `:free` · ~50/يوم |
+- **شات متعدد المزوّدين:** Groq وGoogle Gemini وOpenRouter، مع اختيار الموديل المتاح لحسابك.
+- **مرشد للأسئلة:** اكتب سؤالك لتحصل على تصنيف واقتراح لمزوّد وموديل مناسبين؛ الاقتراح لا يرسل السؤال تلقائيًا.
+- **أرشيف على جهازك:** المحادثات محفوظة في SQLite، ويمكن البحث فيها أو فتحها أو حذفها.
+- **مفاتيحك تفضل معاك:** مفاتيح API تُحفظ مشفّرة محليًا على الهاتف، ولا توجد مفاتيح مشتركة مدمجة في التطبيق.
+- **واجهة عربية:** شاشة ترحيب وإعداد واضحان، مع فتح مواقع التسجيل داخل المتصفح الآمن المدمج في Android.
+- **مظهر على ذوقك:** اتّباع إعداد الجهاز أو اختيار الوضع الليلي أو الفاتح، مع ألوان وهوية OctopusAssem.
+- **اللوجو الأصلي:** اللوجو الكامل مستخدم في أيقونات Android التكيفية والتقليدية.
 
-### البناء من المصدر
+## الخصوصية واستخدام المفاتيح
+
+التطبيق يعمل بنظام **استخدم مفتاحك الشخصي (BYOK)**. لا يحتوي APK على مفتاح API جاهز أو خادم وسيط للمشروع. عند إرسال رسالة، يرسل التطبيق طلبًا مباشرةً إلى المزوّد الذي اخترته مستخدمًا مفتاحك؛ لذلك تنطبق سياسة ذلك المزوّد على الرسالة. سجل المحادثات والمفاتيح المحفوظة محليان على الهاتف، والمفاتيح مشفّرة باستخدام AndroidX Security Crypto.
+
+لا تضع في محادثة أي بيانات لا تريد مشاركتها مع مزوّد الذكاء الاصطناعي. حدود الاستخدام والخطط المجانية وتوفّر الموديلات يحددها كل مزوّد وقد تتغير في أي وقت؛ كلمة «مجاني» لا تعني توفرًا أو حصة مضمونة.
+
+## المزوّدون
+
+| المزوّد | صفحة المفتاح | ملاحظة |
+| --- | --- | --- |
+| [Groq](https://console.groq.com/keys) | إنشاء أو إدارة مفتاح | الحدود والموديلات تتغير حسب حساب المزوّد. |
+| [Google Gemini](https://aistudio.google.com/apikey) | Google AI Studio | يتطلب مفتاح Gemini خاصًا بك. |
+| [OpenRouter](https://openrouter.ai/keys) | إنشاء أو إدارة مفتاح | اختر موديلًا متاحًا، مثل الموديلات ذات اللاحقة `:free` عندما تكون متوفرة. |
+
+## التثبيت والبدء
+
+1. نزّل **أحدث APK موقّع** من [صفحة الإصدارات](https://github.com/OctopusAssem/AiOctofree/releases/latest).
+2. افتح الملف واسمح بالتثبيت من المصدر الذي نزّلت منه إذا طلب Android ذلك.
+3. افتح تبويب **المفاتيح والمظهر**، واختر المزوّد واضغط **فتح الموقع** لإنشاء مفتاحك.
+4. الصق المفتاح في التطبيق واضغط **حفظ**.
+5. ابدأ من **الشات**، أو استخدم **المرشد** لاقتراح مزوّد وموديل.
+
+يتطلب التطبيق **Android 8.0 (API 26) أو أحدث**. لتثبيت تحديث فوق إصدار موجود، استخدم APK الرسمي الموقّع من هذا المشروع؛ التوقيع نفسه محفوظ لإصدارات التطبيق.
+
+## بناء المشروع
+
+المشروع يستخدم Kotlin وJetpack Compose وMaterial 3 وOkHttp وSQLite وAndroidX Security Crypto وAndroid Custom Tabs. يتطلب بناء Android JDK 21 وGradle 9.7.1. أمر البناء المستخدم في CI:
+
 ```bash
-gradle :app:assembleRelease
-# APK → app/build/outputs/apk/release/
+gradle :app:assembleRelease --no-daemon
 ```
 
-### الستاك
-Kotlin · Jetpack Compose · Material 3 · OkHttp (SSE) · SQLite · Security Crypto · Custom Tabs
+ملف التوقيع وكلمات مروره غير موجودة في المستودع. إصدار APK موقّع يُبنى تلقائيًا عبر GitHub Actions باستخدام أسرار المستودع، ثم يتم التحقق من التوقيع قبل نشره. لا ترفع ملف التوقيع أو كلمات مروره إلى GitHub.
 
-### الترخيص
-Apache-2.0 · by [OctopusAssem](https://github.com/OctopusAssem) (عاصم حسين)
+## سجل الإصدارات
+
+تفاصيل الإصدارات الحالية والسابقة موجودة في [CHANGELOG.md](CHANGELOG.md). نحتفظ بآخر إصدار موقّع فقط في صفحة Releases لتجنب تثبيت نسخة قديمة بالخطأ؛ سجل التغييرات يوثّق ما أضيف في الإصدارات السابقة.
+
+## الترخيص
+
+[Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0) · [OctopusAssem](https://github.com/OctopusAssem) — عاصم حسين.
 
 ---
 
 ## English
 
-**AiOctofree** is a free-first Android AI station: multi-provider chat, on-device archive, and a question→model guide.
+**AiOctofree** is an open-source Android AI app with multi-provider chat, an on-device conversation archive, and a guide that recommends a provider and model for a question.
 
-### Features
-- Free-tier providers: Groq, Gemini, OpenRouter `:free`
-- Local SQLite history + encrypted API keys (BYOK only)
-- Keyword/category router suggests the best free model
-- Original uploaded logo used as the launcher icon
-- Custom Tabs to open provider signup pages
+- Providers: Groq, Google Gemini, and OpenRouter.
+- Bring your own API keys; keys are encrypted on-device and no project API key or proxy server is bundled.
+- Chat history is stored locally in SQLite and can be searched or deleted.
+- Arabic-first interface, saved system/light/dark appearance, welcome flow, and the original OctopusAssem launcher logo.
+- Android 8.0 (API 26) or newer.
 
-### Install
-Download the latest signed APK from [Releases](https://github.com/OctopusAssem/AiOctofree/releases).
+Download the [latest signed APK](https://github.com/OctopusAssem/AiOctofree/releases/latest/download/app-release.apk). When sending a prompt, the app sends it directly to the selected AI provider, so requests are subject to that provider's published privacy policy and usage limits. Free tiers and model availability can change.
 
-### Build
-```bash
-gradle :app:assembleRelease
-```
+Built with Kotlin, Jetpack Compose, Material 3, OkHttp, SQLite, AndroidX Security Crypto, and Custom Tabs. Signed releases are built and signature-verified by GitHub Actions; signing credentials are not stored in this repository.
 
-### License
-Apache-2.0 · [OctopusAssem](https://github.com/OctopusAssem)
+See [CHANGELOG.md](CHANGELOG.md) for release history. Licensed under Apache-2.0.

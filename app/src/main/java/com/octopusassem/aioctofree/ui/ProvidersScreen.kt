@@ -177,7 +177,7 @@ fun ProvidersScreen(
             }
             Spacer(Modifier.height(24.dp))
             Text(
-                "AiOctofree مفتوح المصدر · OctopusAssem\nالإصدار 0.1.2",
+                "AiOctofree مفتوح المصدر · OctopusAssem\nالإصدار 0.1.4",
                 fontSize = 12.sp,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
