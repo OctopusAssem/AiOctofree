@@ -174,7 +174,7 @@ fun ChatScreen(
                         horizontalArrangement = Arrangement.spacedBy(10.dp),
                     ) {
                         Image(
-                            painter = painterResource(com.octopusassem.aioctofree.R.drawable.brand_logo),
+                            painter = painterResource(com.octopusassem.aioctofree.R.drawable.brand_icon),
                             contentDescription = "AiOctofree",
                             contentScale = ContentScale.Fit,
                             modifier = Modifier.size(38.dp).clip(RoundedCornerShape(12.dp)),

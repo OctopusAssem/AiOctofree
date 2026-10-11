@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Chat
 import androidx.compose.material.icons.outlined.Explore
@@ -28,6 +29,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.sp
+import com.octopusassem.aioctofree.AiOctofreeTheme
 import com.octopusassem.aioctofree.data.Store
 
 enum class Tab { Chat, Archive, Providers, Guide }
@@ -36,64 +38,91 @@ enum class Tab { Chat, Archive, Providers, Guide }
 fun AppRoot() {
     val ctx = LocalContext.current
     val store = remember { Store(ctx) }
+    var themeMode by remember { mutableStateOf(store.themeMode) }
+    var showWelcome by remember { mutableStateOf(!store.welcomeComplete) }
     var tab by remember { mutableStateOf(Tab.Chat) }
     var openChatId by remember { mutableStateOf<String?>(null) }
     var bump by remember { mutableIntStateOf(0) }
 
-    Box(Modifier.fillMaxSize()) {
-        Image(
-            painter = painterResource(com.octopusassem.aioctofree.R.drawable.app_background),
-            contentDescription = null,
-            contentScale = ContentScale.Crop,
-            modifier = Modifier.fillMaxSize(),
-        )
-        Box(
-            Modifier.fillMaxSize().background(
-                MaterialTheme.colorScheme.background.copy(alpha = 0.78f),
-            ),
-        )
-        Scaffold(
-            containerColor = Color.Transparent,
-            bottomBar = {
-                NavigationBar(containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.88f)) {
-                    val items = listOf(
-                        Triple(Tab.Chat, Icons.Outlined.Chat, "شات"),
-                        Triple(Tab.Archive, Icons.Outlined.History, "أرشيف"),
-                        Triple(Tab.Providers, Icons.Outlined.Key, "مفاتيح"),
-                        Triple(Tab.Guide, Icons.Outlined.Explore, "مرشد"),
-                    )
-                    for ((d, icon, label) in items) {
-                        NavigationBarItem(
-                            selected = tab == d,
-                            onClick = { tab = d },
-                            icon = { Icon(icon, contentDescription = label) },
-                            label = { Text(label, fontSize = 11.sp) },
-                        )
+    AiOctofreeTheme(themeMode) {
+        Box(Modifier.fillMaxSize()) {
+            Image(
+                painter = painterResource(com.octopusassem.aioctofree.R.drawable.app_background),
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.fillMaxSize(),
+            )
+            val isDark = themeMode == "dark" || (themeMode == "system" && isSystemInDarkTheme())
+            Box(
+                Modifier.fillMaxSize().background(
+                    MaterialTheme.colorScheme.background.copy(alpha = if (isDark) 0.70f else 0.84f),
+                ),
+            )
+            if (showWelcome) {
+                WelcomeScreen(
+                    onStart = {
+                        store.welcomeComplete = true
+                        showWelcome = false
+                    },
+                    onAddKey = {
+                        store.welcomeComplete = true
+                        showWelcome = false
+                        tab = Tab.Providers
+                    },
+                )
+            } else {
+                Scaffold(
+                    containerColor = Color.Transparent,
+                    bottomBar = {
+                        NavigationBar(containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.90f)) {
+                            val items = listOf(
+                                Triple(Tab.Chat, Icons.Outlined.Chat, "شات"),
+                                Triple(Tab.Archive, Icons.Outlined.History, "أرشيف"),
+                                Triple(Tab.Providers, Icons.Outlined.Key, "مفاتيح"),
+                                Triple(Tab.Guide, Icons.Outlined.Explore, "مرشد"),
+                            )
+                            for ((d, icon, label) in items) {
+                                NavigationBarItem(
+                                    selected = tab == d,
+                                    onClick = { tab = d },
+                                    icon = { Icon(icon, contentDescription = label) },
+                                    label = { Text(label, fontSize = 11.sp) },
+                                )
+                            }
+                        }
                     }
-                }
-            },
-        ) { pad ->
-            Box(Modifier.padding(pad)) {
-                when (tab) {
-                    Tab.Chat -> ChatScreen(
-                        store = store,
-                        chatId = openChatId,
-                        onChatId = { openChatId = it },
-                        onNeedKey = { tab = Tab.Providers },
-                        bump = bump,
-                        onBump = { bump++ },
-                    )
-                    Tab.Archive -> ArchiveScreen(
-                        store = store,
-                        bump = bump,
-                        onOpen = {
-                            openChatId = it
-                            tab = Tab.Chat
-                        },
-                        onBump = { bump++ },
-                    )
-                    Tab.Providers -> ProvidersScreen(store = store, onBump = { bump++ })
-                    Tab.Guide -> GuideScreen(store = store)
+                ) { pad ->
+                    Box(Modifier.padding(pad)) {
+                        when (tab) {
+                            Tab.Chat -> ChatScreen(
+                                store = store,
+                                chatId = openChatId,
+                                onChatId = { openChatId = it },
+                                onNeedKey = { tab = Tab.Providers },
+                                bump = bump,
+                                onBump = { bump++ },
+                            )
+                            Tab.Archive -> ArchiveScreen(
+                                store = store,
+                                bump = bump,
+                                onOpen = {
+                                    openChatId = it
+                                    tab = Tab.Chat
+                                },
+                                onBump = { bump++ },
+                            )
+                            Tab.Providers -> ProvidersScreen(
+                                store = store,
+                                onBump = { bump++ },
+                                themeMode = themeMode,
+                                onThemeMode = { mode ->
+                                    store.themeMode = mode
+                                    themeMode = mode
+                                },
+                            )
+                            Tab.Guide -> GuideScreen(store = store)
+                        }
+                    }
                 }
             }
         }

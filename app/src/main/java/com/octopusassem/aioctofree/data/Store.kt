@@ -31,6 +31,14 @@ class Store(ctx: Context) {
         get() = prefs.getString("last_model", "") ?: ""
         set(v) = prefs.edit { putString("last_model", v) }
 
+    var themeMode: String
+        get() = prefs.getString("theme_mode", "system") ?: "system"
+        set(v) = prefs.edit { putString("theme_mode", v) }
+
+    var welcomeComplete: Boolean
+        get() = prefs.getBoolean("welcome_complete", false)
+        set(v) = prefs.edit { putBoolean("welcome_complete", v) }
+
     fun getKey(providerId: String): String =
         keys.getString("key_$providerId", "") ?: ""
 

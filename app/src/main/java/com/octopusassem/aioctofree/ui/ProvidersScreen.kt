@@ -18,6 +18,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -47,7 +48,12 @@ import com.octopusassem.aioctofree.data.Store
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ProvidersScreen(store: Store, onBump: () -> Unit) {
+fun ProvidersScreen(
+    store: Store,
+    onBump: () -> Unit,
+    themeMode: String,
+    onThemeMode: (String) -> Unit,
+) {
     val ctx = LocalContext.current
     val drafts = remember {
         mutableStateMapOf<String, String>().apply {
@@ -66,7 +72,7 @@ fun ProvidersScreen(store: Store, onBump: () -> Unit) {
                 ),
                 title = {
                     Column {
-                        Text("المفاتيح", fontWeight = FontWeight.SemiBold)
+                        Text("المفاتيح والمظهر", fontWeight = FontWeight.SemiBold)
                         Text(
                             "مفاتيحك على جهازك فقط · مشفّرة",
                             fontSize = 12.sp,
@@ -92,6 +98,39 @@ fun ProvidersScreen(store: Store, onBump: () -> Unit) {
             )
             if (saved != null) {
                 Text(saved!!, color = MaterialTheme.colorScheme.primary, fontWeight = FontWeight.Medium)
+            }
+            Card(
+                colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.92f),
+                ),
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                Column(Modifier.padding(14.dp)) {
+                    Text("مظهر التطبيق", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
+                    Text(
+                        "اختار ألوانك أو اتبع إعداد الهاتف.",
+                        fontSize = 12.sp,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                    Spacer(Modifier.height(8.dp))
+                    Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                        FilterChip(
+                            selected = themeMode == "system",
+                            onClick = { onThemeMode("system") },
+                            label = { Text("الجهاز", fontSize = 12.sp) },
+                        )
+                        FilterChip(
+                            selected = themeMode == "dark",
+                            onClick = { onThemeMode("dark") },
+                            label = { Text("ليلي", fontSize = 12.sp) },
+                        )
+                        FilterChip(
+                            selected = themeMode == "light",
+                            onClick = { onThemeMode("light") },
+                            label = { Text("فاتح", fontSize = 12.sp) },
+                        )
+                    }
+                }
             }
             Providers.all.forEach { p ->
                 Card(
@@ -138,7 +177,7 @@ fun ProvidersScreen(store: Store, onBump: () -> Unit) {
             }
             Spacer(Modifier.height(24.dp))
             Text(
-                "AiOctofree مفتوح المصدر · OctopusAssem\nالإصدار 0.1.0",
+                "AiOctofree مفتوح المصدر · OctopusAssem\nالإصدار 0.1.2",
                 fontSize = 12.sp,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )

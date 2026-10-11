@@ -61,8 +61,8 @@ jobs:
       - name: Publish release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v0.1.1-build-${{ github.run_number }}
-          name: AiOctofree 0.1.1 (build ${{ github.run_number }})
+          tag_name: v0.1.2-build-${{ github.run_number }}
+          name: AiOctofree 0.1.2 (build ${{ github.run_number }})
           body: |
             Signed installable release of AiOctofree.
             - Multi-provider: Groq · Gemini · OpenRouter
@@ -70,7 +70,10 @@ jobs:
             - On-device chat archive
             - Smart question → model guide
             - Custom Tabs signup helper
-            - Custom octopus AI logo and background
+            - Refined octopus app icon from the project artwork
+            - First-run welcome screen
+            - Manual light / dark / follow-system appearance setting
+            - Vivid cyan / violet / coral accents over the supplied background
             - APK signature verified for Android installation
 
             Open source · Apache-2.0 · by OctopusAssem
