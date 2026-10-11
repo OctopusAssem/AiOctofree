@@ -1,6 +1,7 @@
 package com.octopusassem.aioctofree.ui
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -35,6 +36,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -45,6 +47,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -157,20 +162,31 @@ fun ChatScreen(
     }
 
     Scaffold(
+        containerColor = Color.Transparent,
         topBar = {
             TopAppBar(
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.86f),
+                ),
                 title = {
-                    Column {
-                        Text(
-                            chat?.title ?: "AiOctofree",
-                            fontWeight = FontWeight.SemiBold,
-                            maxLines = 1,
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(10.dp),
+                    ) {
+                        Image(
+                            painter = painterResource(com.octopusassem.aioctofree.R.drawable.brand_logo),
+                            contentDescription = "AiOctofree",
+                            contentScale = ContentScale.Fit,
+                            modifier = Modifier.size(38.dp).clip(RoundedCornerShape(12.dp)),
                         )
-                        Text(
-                            "${provider.name} · ${model.substringAfterLast('/')}",
-                            fontSize = 12.sp,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        )
+                        Column {
+                            Text(chat?.title ?: "AiOctofree", fontWeight = FontWeight.SemiBold, maxLines = 1)
+                            Text(
+                                "${provider.name} · ${model.substringAfterLast('/')}",
+                                fontSize = 12.sp,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            )
+                        }
                     }
                 },
                 actions = {

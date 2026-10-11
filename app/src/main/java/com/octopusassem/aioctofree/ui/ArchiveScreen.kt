@@ -21,6 +21,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -28,6 +29,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -52,8 +54,14 @@ fun ArchiveScreen(
     val fmt = remember { SimpleDateFormat("dd MMM · HH:mm", Locale("ar")) }
 
     Scaffold(
+        containerColor = Color.Transparent,
         topBar = {
-            TopAppBar(title = { Text("الأرشيف", fontWeight = FontWeight.SemiBold) })
+            TopAppBar(
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.86f),
+                ),
+                title = { Text("الأرشيف", fontWeight = FontWeight.SemiBold) },
+            )
         },
     ) { pad ->
         Column(
