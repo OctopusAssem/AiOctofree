@@ -37,7 +37,14 @@ jobs:
         run: gradle :app:assembleRelease --no-daemon --stacktrace
 
       - name: Verify APK signature
-        run: apksigner verify --verbose app/build/outputs/apk/release/*.apk
+        run: |
+          apksigner_path=""
+          for candidate in "$ANDROID_HOME"/build-tools/*/apksigner; do
+            if [ -x "$candidate" ]; then apksigner_path="$candidate"; fi
+          done
+          test -n "$apksigner_path"
+          apk=$(printf '%s\n' app/build/outputs/apk/release/*.apk)
+          "$apksigner_path" verify --verbose "$apk"
 
       - name: Show APK info
         run: |
