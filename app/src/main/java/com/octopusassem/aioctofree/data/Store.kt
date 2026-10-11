@@ -101,7 +101,7 @@ class Store(ctx: Context) {
         val now = System.currentTimeMillis()
         db.execSQL(
             "INSERT INTO chats(id,title,provider_id,model,category,updated_at) VALUES(?,?,?,?,?,?)",
-            arrayOf(id, "محادثة جديدة", providerId, model, category, now),
+            arrayOf<Any?>(id, "محادثة جديدة", providerId, model, category, now),
         )
         return Chat(id, "محادثة جديدة", providerId, model, category, now)
     }
@@ -109,21 +109,21 @@ class Store(ctx: Context) {
     fun renameChat(id: String, title: String) {
         db.execSQL(
             "UPDATE chats SET title=?, updated_at=? WHERE id=?",
-            arrayOf(title.take(80), System.currentTimeMillis(), id),
+            arrayOf<Any?>(title.take(80), System.currentTimeMillis(), id),
         )
     }
 
     fun touchChat(id: String) {
         db.execSQL(
             "UPDATE chats SET updated_at=? WHERE id=?",
-            arrayOf(System.currentTimeMillis(), id),
+            arrayOf<Any?>(System.currentTimeMillis(), id),
         )
     }
 
     fun updateChatRoute(id: String, providerId: String, model: String, category: String) {
         db.execSQL(
             "UPDATE chats SET provider_id=?, model=?, category=?, updated_at=? WHERE id=?",
-            arrayOf(providerId, model, category, System.currentTimeMillis(), id),
+            arrayOf<Any?>(providerId, model, category, System.currentTimeMillis(), id),
         )
     }
 
@@ -132,7 +132,7 @@ class Store(ctx: Context) {
         val ts = System.currentTimeMillis()
         db.execSQL(
             "INSERT INTO messages(id,chat_id,role,content,ts) VALUES(?,?,?,?,?)",
-            arrayOf(id, chatId, role, content, ts),
+            arrayOf<Any?>(id, chatId, role, content, ts),
         )
         touchChat(chatId)
         if (role == "user") {
@@ -148,12 +148,12 @@ class Store(ctx: Context) {
     }
 
     fun updateMessage(id: String, content: String) {
-        db.execSQL("UPDATE messages SET content=? WHERE id=?", arrayOf(content, id))
+        db.execSQL("UPDATE messages SET content=? WHERE id=?", arrayOf<Any?>(content, id))
     }
 
     fun deleteChat(id: String) {
-        db.execSQL("DELETE FROM messages WHERE chat_id=?", arrayOf(id))
-        db.execSQL("DELETE FROM chats WHERE id=?", arrayOf(id))
+        db.execSQL("DELETE FROM messages WHERE chat_id=?", arrayOf<Any?>(id))
+        db.execSQL("DELETE FROM chats WHERE id=?", arrayOf<Any?>(id))
     }
 
     fun search(q: String): List<Chat> {

@@ -1,18 +1,21 @@
 package com.octopusassem.aioctofree.ui
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Chat
+import androidx.compose.material.icons.outlined.Explore
 import androidx.compose.material.icons.outlined.History
 import androidx.compose.material.icons.outlined.Key
-import androidx.compose.material.icons.outlined.Explore
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -29,19 +32,29 @@ fun AppRoot() {
     val store = remember { Store(ctx) }
     var tab by remember { mutableStateOf(Tab.Chat) }
     var openChatId by remember { mutableStateOf<String?>(null) }
-    var bump by remember { mutableStateOf(0) }
+    var bump by remember { mutableIntStateOf(0) }
 
     Scaffold(
         bottomBar = {
-            NavigationBar {
-                Nav(Tab.Chat, tab, "شات", Icons.Outlined.Chat) { tab = Tab.Chat }
-                Nav(Tab.Archive, tab, "أرشيف", Icons.Outlined.History) { tab = Tab.Archive }
-                Nav(Tab.Providers, tab, "مفاتيح", Icons.Outlined.Key) { tab = Tab.Providers }
-                Nav(Tab.Guide, tab, "مرشد", Icons.Outlined.Explore) { tab = Tab.Guide }
+            NavigationBar(containerColor = MaterialTheme.colorScheme.surface) {
+                val items = listOf(
+                    Triple(Tab.Chat, Icons.Outlined.Chat, "شات"),
+                    Triple(Tab.Archive, Icons.Outlined.History, "أرشيف"),
+                    Triple(Tab.Providers, Icons.Outlined.Key, "مفاتيح"),
+                    Triple(Tab.Guide, Icons.Outlined.Explore, "مرشد"),
+                )
+                for ((d, icon, label) in items) {
+                    NavigationBarItem(
+                        selected = tab == d,
+                        onClick = { tab = d },
+                        icon = { Icon(icon, contentDescription = label) },
+                        label = { Text(label, fontSize = 11.sp) },
+                    )
+                }
             }
         },
     ) { pad ->
-        androidx.compose.foundation.layout.Box(Modifier.padding(pad)) {
+        Box(Modifier.padding(pad)) {
             when (tab) {
                 Tab.Chat -> ChatScreen(
                     store = store,
@@ -65,20 +78,4 @@ fun AppRoot() {
             }
         }
     }
-}
-
-@Composable
-private fun Nav(
-    id: Tab,
-    current: Tab,
-    label: String,
-    icon: androidx.compose.ui.graphics.vector.ImageVector,
-    onClick: () -> Unit,
-) {
-    NavigationBarItem(
-        selected = current == id,
-        onClick = onClick,
-        icon = { Icon(icon, contentDescription = label) },
-        label = { Text(label, fontSize = 11.sp) },
-    )
 }
