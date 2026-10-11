@@ -23,8 +23,8 @@ AiOctofree تطبيق Android مفتوح المصدر، معمول عشان يج
 - **أرشيف على جهازك:** المحادثات محفوظة في SQLite، ويمكن البحث فيها أو فتحها أو حذفها.
 - **مفاتيحك تفضل معاك:** مفاتيح API تُحفظ مشفّرة محليًا على الهاتف، ولا توجد مفاتيح مشتركة مدمجة في التطبيق.
 - **واجهة عربية:** شاشة ترحيب وإعداد واضحان، مع فتح مواقع التسجيل داخل المتصفح الآمن المدمج في Android.
-- **مظهر على ذوقك:** اتّباع إعداد الجهاز أو اختيار الوضع الليلي أو الفاتح، مع ألوان وهوية OctopusAssem.
-- **اللوجو الأصلي:** اللوجو الكامل مستخدم في أيقونات Android التكيفية والتقليدية.
+- **مظهر على ذوقك:** الوضع الليلي هو الافتراضي، ويمكنك اختيار الفاتح أو اتّباع إعداد الجهاز.
+- **أيقونة أوضح:** أيقونة أخطبوط مبسطة وواضحة في ملف APK وقوائم التطبيقات؛ واللوجو الكامل يظل داخل المشروع.
 - **اعتماد رسمي داخل التطبيق:** «فكرة وتصميم: عاصم حسين · OctopusAssem»؛ الضغط على رقم الإصدار يفتح صفحة المطور الرسمية على GitHub.
 
 ## الخصوصية واستخدام المفاتيح
@@ -78,7 +78,7 @@ gradle :app:assembleRelease --no-daemon
 - Providers: Groq, Google Gemini, and OpenRouter.
 - Bring your own API keys; keys are encrypted on-device and no project API key or proxy server is bundled.
 - Chat history is stored locally in SQLite and can be searched or deleted.
-- Arabic-first interface, saved system/light/dark appearance, welcome flow, and the original OctopusAssem launcher logo.
+- Arabic-first interface, dark mode by default (with saved light/system choices), and a clean octopus app/APK icon.
 - Official in-app credit for Assem Hussein (OctopusAssem); the version link opens the developer GitHub profile.
 - Android 8.0 (API 26) or newer.
 

@@ -32,7 +32,7 @@ class Store(ctx: Context) {
         set(v) = prefs.edit { putString("last_model", v) }
 
     var themeMode: String
-        get() = prefs.getString("theme_mode", "system") ?: "system"
+        get() = prefs.getString("theme_mode", "dark") ?: "dark"
         set(v) = prefs.edit { putString("theme_mode", v) }
 
     var welcomeComplete: Boolean
