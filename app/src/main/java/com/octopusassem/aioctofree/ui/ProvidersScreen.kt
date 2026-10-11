@@ -26,6 +26,7 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
@@ -42,6 +43,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.octopusassem.aioctofree.BuildConfig
 import com.octopusassem.aioctofree.browser.Tabs
 import com.octopusassem.aioctofree.data.Providers
 import com.octopusassem.aioctofree.data.Store
@@ -177,10 +179,13 @@ fun ProvidersScreen(
             }
             Spacer(Modifier.height(24.dp))
             Text(
-                "AiOctofree مفتوح المصدر · OctopusAssem\nالإصدار 0.1.4",
+                "فكرة وتصميم: عاصم حسين · OctopusAssem",
                 fontSize = 12.sp,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
+            TextButton(onClick = { Tabs.open(ctx, "https://github.com/OctopusAssem") }) {
+                Text("الإصدار ${BuildConfig.VERSION_NAME} · صفحة المطور على GitHub", fontSize = 12.sp)
+            }
         }
     }
 }

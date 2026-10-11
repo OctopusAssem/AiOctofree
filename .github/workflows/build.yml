@@ -61,16 +61,17 @@ jobs:
       - name: Publish release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v0.1.4-build-${{ github.run_number }}
-          name: AiOctofree 0.1.4 (build ${{ github.run_number }})
+          tag_name: v0.1.5-build-${{ github.run_number }}
+          name: AiOctofree 0.1.5 (build ${{ github.run_number }})
           body: |
-            AiOctofree 0.1.4 — signed Android update.
-            - Correct app version shown in Settings.
-            - Higher Android version code so this release installs over 0.1.3.
+            AiOctofree 0.1.5 — signed Android update.
+            - Official in-app credit: Idea and design by Assem Hussein · OctopusAssem.
+            - Tapping the version in Settings opens the developer's official GitHub profile.
+            - Higher Android version code so this release installs over 0.1.4.
             - Groq, Gemini, and OpenRouter chat with your own API keys.
             - Encrypted on-device keys and a local conversation archive.
             - Question guide, welcome screen, and saved appearance choice.
-            - Full original logo used for adaptive and legacy Android icons.
+            - Full original logo remains the app and APK icon for adaptive and legacy Android.
             - APK signature verified before publishing.
             Read README.md for the full guide and CHANGELOG.md for release history.
             Open source · Apache-2.0 · by OctopusAssem

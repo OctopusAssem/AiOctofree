@@ -25,6 +25,7 @@ AiOctofree تطبيق Android مفتوح المصدر، معمول عشان يج
 - **واجهة عربية:** شاشة ترحيب وإعداد واضحان، مع فتح مواقع التسجيل داخل المتصفح الآمن المدمج في Android.
 - **مظهر على ذوقك:** اتّباع إعداد الجهاز أو اختيار الوضع الليلي أو الفاتح، مع ألوان وهوية OctopusAssem.
 - **اللوجو الأصلي:** اللوجو الكامل مستخدم في أيقونات Android التكيفية والتقليدية.
+- **اعتماد رسمي داخل التطبيق:** «فكرة وتصميم: عاصم حسين · OctopusAssem»؛ الضغط على رقم الإصدار يفتح صفحة المطور الرسمية على GitHub.
 
 ## الخصوصية واستخدام المفاتيح
 
@@ -78,6 +79,7 @@ gradle :app:assembleRelease --no-daemon
 - Bring your own API keys; keys are encrypted on-device and no project API key or proxy server is bundled.
 - Chat history is stored locally in SQLite and can be searched or deleted.
 - Arabic-first interface, saved system/light/dark appearance, welcome flow, and the original OctopusAssem launcher logo.
+- Official in-app credit for Assem Hussein (OctopusAssem); the version link opens the developer GitHub profile.
 - Android 8.0 (API 26) or newer.
 
 Download the [latest signed APK](https://github.com/OctopusAssem/AiOctofree/releases/latest/download/app-release.apk). When sending a prompt, the app sends it directly to the selected AI provider, so requests are subject to that provider's published privacy policy and usage limits. Free tiers and model availability can change.
