@@ -23,8 +23,21 @@ jobs:
         with:
           gradle-version: '9.7.1'
 
+      - name: Restore signing keystore
+        env:
+          AIOCTOFREE_KEYSTORE_B64: ${{ secrets.AIOCTOFREE_KEYSTORE_B64 }}
+        run: |
+          mkdir -p app/keystore
+          printf '%s' "$AIOCTOFREE_KEYSTORE_B64" | base64 -d > app/keystore/aioctofree.p12
+
       - name: Build release APK
+        env:
+          AIOCTOFREE_STORE_PASSWORD: ${{ secrets.AIOCTOFREE_KEYSTORE_PASSWORD }}
+          AIOCTOFREE_KEY_PASSWORD: ${{ secrets.AIOCTOFREE_KEYSTORE_PASSWORD }}
         run: gradle :app:assembleRelease --no-daemon --stacktrace
+
+      - name: Verify APK signature
+        run: apksigner verify --verbose app/build/outputs/apk/release/*.apk
 
       - name: Show APK info
         run: |
@@ -41,15 +54,17 @@ jobs:
       - name: Publish release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v0.1.0-build-${{ github.run_number }}
-          name: AiOctofree 0.1.0 (build ${{ github.run_number }})
+          tag_name: v0.1.1-build-${{ github.run_number }}
+          name: AiOctofree 0.1.1 (build ${{ github.run_number }})
           body: |
-            Free-first AI station for Android.
+            Signed installable release of AiOctofree.
             - Multi-provider: Groq · Gemini · OpenRouter
             - Local encrypted API keys
             - On-device chat archive
             - Smart question → model guide
             - Custom Tabs signup helper
+            - Custom octopus AI logo and background
+            - APK signature verified for Android installation
 
             Open source · Apache-2.0 · by OctopusAssem
           files: app/build/outputs/apk/release/*.apk

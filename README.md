@@ -16,7 +16,7 @@
 - **فتح الموقع**: لو محتاج مفتاح، زر يفتح صفحة الاشتراك (Custom Tabs)
 
 ### التثبيت
-1. نزّل أحدث APK من [Releases](https://github.com/OctopusAssem/AiOctofree/releases)
+1. نزّل أحدث APK الموقّع من [Releases](https://github.com/OctopusAssem/AiOctofree/releases)
 2. ثبّته (مصدر غير معروف)
 3. من تبويب **مفاتيح** → افتح موقع المزود → انسخ المفتاح → احفظ
 4. ارجع للشات واسأل
@@ -53,7 +53,7 @@ Apache-2.0 · by [OctopusAssem](https://github.com/OctopusAssem) (عاصم حس�
 - Custom Tabs to open provider signup pages
 
 ### Install
-Download the latest APK from [Releases](https://github.com/OctopusAssem/AiOctofree/releases).
+Download the latest signed APK from [Releases](https://github.com/OctopusAssem/AiOctofree/releases).
 
 ### Build
 ```bash
